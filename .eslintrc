@@ -1,4 +1,20 @@
 {
   "root": true,
-  "extends": ["@nuxt/eslint-config"]
+  "extends": [
+    "@nuxt/eslint-config"
+  ],
+  "rules": {
+    "@typescript-eslint/type-annotation-spacing": "warn",
+    "quotes": "warn",
+    "eol-last": "warn",
+    "semi": "warn",
+    "no-multiple-empty-lines": [
+      "warn",
+      {
+        "max": 1
+      }
+    ],
+    // Conflicts
+    "vue/max-attributes-per-line": "off"
+  }
 }

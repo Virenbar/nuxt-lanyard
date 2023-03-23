@@ -1,30 +1,39 @@
-import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
-import { defu } from 'defu'
-
-// Module options TypeScript interface definition
-export interface ModuleOptions {
-  UserID: string
-}
+import { addImportsDir, addPlugin, defineNuxtModule } from "@nuxt/kit";
+import { defu } from "defu";
+import { resolve } from "path";
+import { fileURLToPath } from "url";
+import { name, version } from "../package.json";
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@virenbar/nuxt-lanyard',
-    configKey: 'nuxt-lanyard',
+    name,
+    version,
+    configKey: "nuxt-lanyard",
     compatibility: {
-      nuxt: '^3.0.0'
+      nuxt: "^3.0.0"
     }
   },
-  // Default configuration options of the Nuxt module
   defaults: {
-    UserID: ""
+    apiURL: "api.lanyard.rest",
+    userID: "",
+    socket: true
   },
   setup(options, nuxt) {
-    nuxt.options.runtimeConfig.public.lanyard = defu(nuxt.options.runtimeConfig.public.lanyard, {
-      UserID: options.UserID
-    })
+    const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
 
-    const resolver = createResolver(import.meta.url)
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugin'))
+    addPlugin(resolve(runtimeDir, "plugin.client"));
+    addImportsDir(resolve(runtimeDir, "composables"));
+
+    nuxt.options.runtimeConfig.public.lanyard = defu(nuxt.options.runtimeConfig.public.lanyard, {
+      apiURL: options.apiURL,
+      userID: options.userID,
+      socket: options.socket
+    });
   }
-})
+});
+
+export interface ModuleOptions {
+  apiURL: string
+  userID: string
+  socket: boolean
+}

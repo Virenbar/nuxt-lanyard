@@ -1,13 +1,4 @@
-<!--
-Get your module up and running quickly.
-
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
-- Package name: @virenbar/nuxt-lanyard
-- Description: My new Nuxt module
--->
-
-# My Module
+# Nuxt Lanyard
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -17,14 +8,13 @@ Find and replace all on all files (CMD+SHIFT+F):
 My new Nuxt module for doing amazing things.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/virenbar/nuxt-lanyard?file=playground%2Fapp.vue) -->
+- [🏀 Online playground](https://stackblitz.com/github/virenbar/nuxt-lanyard?file=playground%2Fapp.vue)
 <!-- - [📖 &nbsp;Documentation](https://example.com) -->
 
 ## Features
 
 <!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
+- 🔖 &nbsp;Bar
 - 🌲 &nbsp;Baz
 
 ## Quick Setup
@@ -32,14 +22,14 @@ My new Nuxt module for doing amazing things.
 1. Add `@virenbar/nuxt-lanyard` dependency to your project
 
 ```bash
-# Using pnpm
-pnpm add -D @virenbar/nuxt-lanyard
+# Using npm
+npm install --save-dev @virenbar/nuxt-lanyard
 
 # Using yarn
 yarn add --dev @virenbar/nuxt-lanyard
 
-# Using npm
-npm install --save-dev @virenbar/nuxt-lanyard
+# Using pnpm
+pnpm add -D @virenbar/nuxt-lanyard
 ```
 
 2. Add `@virenbar/nuxt-lanyard` to the `modules` section of `nuxt.config.ts`
@@ -52,32 +42,32 @@ export default defineNuxtConfig({
 })
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
+That's it! You can now use Nuxt Lanyard in your Nuxt app ✨
 
 ## Development
 
 ```bash
 # Install dependencies
-npm install
+yarn install
 
 # Generate type stubs
-npm run dev:prepare
+yarn dev:prepare
 
 # Develop with the playground
-npm run dev
+yarn dev
 
 # Build the playground
-npm run dev:build
+yarn dev:build
 
 # Run ESLint
-npm run lint
+yarn lint
 
 # Run Vitest
-npm run test
-npm run test:watch
+yarn test
+yarn test:watch
 
 # Release new version
-npm run release
+yarn release
 ```
 
 <!-- Badges -->
