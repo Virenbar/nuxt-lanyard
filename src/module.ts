@@ -14,9 +14,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
   },
   defaults: {
-    apiURL: "api.lanyard.rest",
-    userID: "",
-    socket: true
+    apiURL: "api.lanyard.rest"
   },
   setup(options, nuxt) {
     const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
@@ -25,15 +23,11 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsDir(resolve(runtimeDir, "composables"));
 
     nuxt.options.runtimeConfig.public.lanyard = defu(nuxt.options.runtimeConfig.public.lanyard, {
-      apiURL: options.apiURL,
-      userID: options.userID,
-      socket: options.socket
+      apiURL: options.apiURL
     });
   }
 });
 
 export interface ModuleOptions {
   apiURL: string
-  userID: string
-  socket: boolean
 }

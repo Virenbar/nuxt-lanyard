@@ -29,7 +29,8 @@ export interface LanyardInitializeAll {
 export type LanyardInitializeData = | LanyardInitializeOne | LanyardInitializeMany | LanyardInitializeAll;
 export type LanyardEventType = "INIT_STATE" | "PRESENCE_UPDATE"
 export type InitState = LanyardData | Record<string, LanyardData>
-export type PresenceUpdate = LanyardData | (LanyardData & { user_id: string })
+// Documentation says there is `user_id`, but it does't exists 
+export type PresenceUpdate = LanyardData /*| (LanyardData & { user_id: string })*/
 export type LanyardEvents = { INIT_STATE: InitState; PRESENCE_UPDATE: PresenceUpdate }
 
 export interface LanyardMessage<T> {
@@ -57,7 +58,7 @@ export interface LanyardInitialize extends LanyardMessage<LanyardInitializeData>
   t?: never
 }
 
-export interface LanyardHeartbeat extends LanyardMessage<undefined> {
+export interface LanyardHeartbeat extends Omit<LanyardMessage<never>, "d"> {
   op: LanyardOpcode.HEARTBEAT
   seq?: never
   t?: never

@@ -1,4 +1,15 @@
 <script setup lang="ts">
+import { computed } from "vue";
+import { DiscordUser, LanyardData } from "~/../src/types";
+
+const props = defineProps<Props>();
+
+const U = computed(() => props.user ?? props.data?.discord_user);
+
+interface Props {
+  data?: LanyardData | null
+  user?: DiscordUser | null
+}
 </script>
 <template>
   <svg viewBox="0 0 1 1" aria-hidden="true" style="position: absolute; pointer-events: none; top: -1px; left: -1px; width: 1px; height: 1px;">
@@ -218,5 +229,6 @@
       <circle fill="black" cx="0.5" cy="0.5" r="0.25" />
     </mask>
   </svg>
+  <div>{{ U?.display_name }}</div>
 </template>
 <style scoped lang="scss"></style>

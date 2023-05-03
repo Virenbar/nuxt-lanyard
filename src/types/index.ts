@@ -24,5 +24,4 @@ export interface LanyardConfigAll {
 }
 
 export type LanyardConfigWS = LanyardConfigOne | LanyardConfigMany | LanyardConfigAll;
-
 export type LanyardConfig = LanyardConfigREST | LanyardConfigWS;

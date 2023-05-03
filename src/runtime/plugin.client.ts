@@ -1,48 +1,9 @@
-import { defineNuxtPlugin, useRuntimeConfig, useState } from "#app";
-import { LanyardData, LanyardMessage, LanyardResponse } from "../types";
-
-let interval = 30_000;
+import { defineNuxtPlugin, useRuntimeConfig } from "#app";
+import { Activity, Assets, LanyardResponse } from "../types";
 
 export default defineNuxtPlugin(() => {
   const options = useRuntimeConfig().public.lanyard;
   const apiURL = options.apiURL;
-  const userID = options.userID;
-
-  const data = useState<LanyardData | null>("lanyard");
-
-  if (options.socket) {
-    const supportsWebSocket = "WebSocket" in window || "MozWebSocket" in window;
-
-    if (!supportsWebSocket) { throw new Error("Browser doesn't support WebSocket connections."); }
-    if (!options.userID) { throw new Error("Missing `userID` option."); }
-
-    // Messages for websocket
-    const subscribe: LanyardMessage = { op: 2, d: { subscribe_to_id: userID } };
-    const heartbeat: LanyardMessage = { op: 3 };
-
-    let WS: WebSocket;
-    let HB: NodeJS.Timer;
-    const connectWS = () => {
-      if (HB) { clearInterval(HB); }
-
-      WS = new WebSocket(`wss://${apiURL}/socket`);
-      WS.onmessage = (event) => {
-        const L = <LanyardMessage>JSON.parse(event.data);
-
-        if (L.op == 0) {
-          data.value = L.d;
-        } else if (L.op == 1) {
-          interval = L.d.heartbeat_interval;
-          WS.send(JSON.stringify(subscribe));
-        }
-      };
-      WS.onclose = connectWS;
-
-      HB = setInterval(() => { WS.send(JSON.stringify(heartbeat)); }, interval);
-    };
-
-    connectWS();
-  }
 
   /**
    * Get Lanyard Data
@@ -50,17 +11,75 @@ export default defineNuxtPlugin(() => {
    * @returns Lanyard Data
    */
   async function getData(userID?: string) {
-    const ID = userID ?? options.userID;
-    const response = await fetch(`https://${options.apiURL}/v1/users/${ID}`);
+    const response = await fetch(`https://${apiURL}/v1/users/${userID}`);
     const body = await response.json() as LanyardResponse;
-    return body.data;
+    if (body.success) {
+      return body.data;
+    } else {
+      throw new Error(body.error.message);
+    }
+  }
+
+  /**
+   * Format start timestamp to string
+   * @param {Activity} [activity]
+   * @returns
+   */
+  function formatStart(activity?: Activity) {
+    if (!activity || !activity.timestamps) { return; }
+    const start = activity.timestamps.start;
+    const seconds = (Date.now() - start) / 1000;
+
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = Math.round(seconds % 60);
+    const time = [
+      h,
+      m > 9 ? m : (h ? "0" + m : m || "0"),
+      s > 9 ? s : "0" + s
+    ].filter(Boolean).join(":");
+    return time;
+  }
+
+  /**
+   * Resolve image string to URL
+   * @param {string} app
+   * @param {string} [image]
+   * @returns Image URL
+   */
+  function resolveImage(app: string, image?: string) {
+    if (!image) { return; }
+    if (image.startsWith("mp:")) {
+      return image?.replace("mp:", "https://media.discordapp.net/");
+    } else {
+      return `https://cdn.discordapp.com/app-assets/${app}/${image}.png`;
+    }
+  }
+
+  /**
+   * Resolve images strings with URL
+   * @param {Activity} [activity]
+   * @returns Formatted assets 
+   */
+  function resolveAssets(activity?: Activity) {
+    if (!activity || !activity.application_id || !activity.assets) { return; }
+    const app = activity.application_id;
+    return {
+      large_image: resolveImage(app, activity.assets.large_image),
+      large_text: activity.assets.large_text,
+      small_image: resolveImage(app, activity.assets.small_image),
+      small_text: activity.assets.small_text
+    } as Assets;
   }
 
   return {
     provide: {
       lanyard: {
-        data,
-        getData
+        apiURL,
+        getData,
+        formatStart,
+        resolveImage,
+        resolveAssets
       }
     }
   };
