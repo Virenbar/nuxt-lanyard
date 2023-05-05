@@ -1,7 +1,12 @@
 {
   "name": "@virenbar/nuxt-lanyard",
   "version": "1.0.0",
-  "description": "My new Nuxt module",
+  "description": "A Nuxt module to track your Discord status using Lanyard API",
+  "keywords": [
+    "nuxt",
+    "lanyard"
+  ],
+  "homepage": "https://github.com/Virenbar/nuxt-lanyard#readme",
   "repository": "@virenbar/nuxt-lanyard",
   "license": "MIT",
   "type": "module",
