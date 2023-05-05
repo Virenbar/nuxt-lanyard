@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "yarn"
+          
+      - name: 📦 Install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
+
+      - name: 🚧 Set up project
+        run: yarn dev:prepare
+
+      - name: 🛠 Build project
+        run: yarn prepack
+
+      # - name: 🧪 Test project
+      #   run: yarn test
