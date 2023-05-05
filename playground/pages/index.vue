@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { useLanyard } from "#imports";
 
-const L = useLanyard({ method: "rest", id: "94490510688792576" });
+const L = useLanyard({ method: "rest", id: "94490510688792576", pollInterval: 10e3 });
 </script>
 <template>
   <div>
     <h4>REST - Single User</h4>
-    <div>
-      <span>User:</span> <b> {{ L?.discord_user.username }}#{{ L?.discord_user.discriminator }}</b>
-      <div>
-        Status: {{ L?.discord_status }}
-      </div>
-    </div>
     <template v-if="L">
+      <div>
+        <span>User:</span> <b> {{ L.discord_user.username }}#{{ L.discord_user.discriminator }}</b>
+        <div>
+          Status: {{ L.discord_status }}
+        </div>
+      </div>
       <div class="d-flex flex-column">
         <div class="card">
           <div class="card-header">
@@ -20,7 +20,7 @@ const L = useLanyard({ method: "rest", id: "94490510688792576" });
           </div>
           <div class="card-body">
             <ul>
-              <li v-for="V, K in L?.kv" :key="K">
+              <li v-for="V, K in L.kv" :key="K">
                 {{ K }}: {{ V }}
               </li>
             </ul>
