@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { DiscordUser, LanyardData } from "~/../src/types";
+import { DiscordUser, LanyardData } from "~/../dist/runtime/types";
 
 const props = defineProps<Props>();
 

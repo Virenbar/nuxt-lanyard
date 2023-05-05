@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { Activity, LanyardData } from "~/../src/types";
+import { Activity, LanyardData } from "~/../dist/runtime/types";
 const props = defineProps<Props>();
 
 const A = computed(() => props.activity ?? props.data?.activities.filter(A => A.type == 0)[0]);

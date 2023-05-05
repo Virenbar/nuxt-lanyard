@@ -1,5 +1,5 @@
 import { defineNuxtPlugin, useRuntimeConfig } from "#app";
-import { Activity, Assets, LanyardResponse } from "../types";
+import { Activity, Assets, LanyardResponse } from "./types";
 
 export default defineNuxtPlugin(() => {
   const options = useRuntimeConfig().public.lanyard;
