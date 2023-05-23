@@ -14,8 +14,8 @@ interface Props {
   <div v-if="A" class="body">
     <div class="assets">
       <template v-if="A.assets?.large_image">
-        <img :alt="A.assets?.large_text" :src="$lanyard.resolveAssets(A)?.large_image" class="large">
-        <img v-if="A.assets.small_image" :alt="A.assets?.small_text" :src="$lanyard.resolveAssets(A)?.small_image" class="small">
+        <img :alt="A.assets?.large_text" :src="$lanyard.resolveActivity(A, 'large')" class="large">
+        <img v-if="A.assets.small_image" :alt="A.assets?.small_text" :src="$lanyard.resolveActivity(A, 'small')" class="small">
       </template>
     </div>
     <div class="content">

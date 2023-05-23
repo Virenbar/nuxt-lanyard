@@ -1,3 +1,4 @@
+
 export * from "./lanyard";
 export * from "./rest";
 export * from "./websocket";
@@ -25,3 +26,6 @@ export interface LanyardConfigAll {
 
 export type LanyardConfigWS = LanyardConfigOne | LanyardConfigMany | LanyardConfigAll;
 export type LanyardConfig = LanyardConfigREST | LanyardConfigWS;
+
+export type AssetType = "small" | "large"
+export type EncodedTwemoji = `${1 | 2 | 3}${string}` | "a9" | "ae" | "e50a";
