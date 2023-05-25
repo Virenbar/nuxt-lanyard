@@ -64,58 +64,77 @@ function useWS<T extends InitState>(config: LanyardConfigWS, data: Ref<T>) {
   const supportsWebSocket = "WebSocket" in window || "MozWebSocket" in window;
   if (!supportsWebSocket) { throw new Error("Browser doesn't support WebSocket connections."); }
 
-  // Messages for websocket
-  const heartbeat: LanyardHeartbeat = { op: 3 };
+  const single = "id" in config;
+  // Initialization data
   let d: LanyardInitializeData;
   if ("all" in config) { d = { subscribe_to_all: config.all }; }
   else if ("ids" in config) { d = { subscribe_to_ids: config.ids }; }
   else if ("id" in config) { d = { subscribe_to_id: config.id }; }
   else { throw new Error("Invalid lanyard config"); }
+  // Messages for websocket
+  const heartbeat: LanyardHeartbeat = { op: 3 };
   const init: LanyardInitialize = {
     op: LanyardOpcode.INITIALIZE,
     d: d
   };
+
   let interval = 30e3;
-  const single = "id" in config;
-  const WS = new WebSocket(`wss://${apiURL}/socket`);
-  const send = <T>(message: T) => WS.send(JSON.stringify(message));
+  let WS: WebSocket | null;
+  let timer: NodeJS.Timer | null;
 
-  // const first = (event: MessageEvent) => {
-  //   const L = <LanyardHello>JSON.parse(event.data);
-  //   interval = L.d.heartbeat_interval ?? interval;
-  //   send(init);
-  // };
+  const send = <T>(message: T) => WS?.send(JSON.stringify(message));
+  const connect = () => {
+    WS = new WebSocket(`wss://${apiURL}/socket`);
 
-  WS.onmessage = (event) => {
-    const L = <LanyardMessage<any>>JSON.parse(event.data);
+    WS.onmessage = (event) => {
+      const L = <LanyardMessage<any>>JSON.parse(event.data);
 
-    if (L.op == LanyardOpcode.EVENT) {
-      const event = <LanyardMessage<T>>L;
-      if (event.t == "INIT_STATE") {
-        data.value = event.d;
-      } else {
-        const update = <LanyardEvent<"PRESENCE_UPDATE">>event;
-        if (single) {
-          data.value = <T>{ ...update.d };
+      if (L.op == LanyardOpcode.EVENT) {
+        const event = <LanyardMessage<T>>L;
+        if (event.t == "INIT_STATE") {
+          data.value = event.d;
         } else {
-          //const { user_id, ...state } = update.d;
-          const user_id = update.d.discord_user.id;
-          (<Record<string, LanyardData>>data.value)[user_id] = update.d;
+          const update = <LanyardEvent<"PRESENCE_UPDATE">>event;
+          if (single) {
+            data.value = <T>{ ...update.d };
+          } else {
+            //const { user_id, ...state } = update.d;
+            const user_id = update.d.discord_user.id;
+            (<Record<string, LanyardData>>data.value)[user_id] = update.d;
+          }
         }
+      } else if (L.op == LanyardOpcode.HELLO) {
+        const hello = <LanyardHello>L;
+        // Setup timer after server response
+        interval = hello.d.heartbeat_interval;
+        timer ??= setInterval(() => { send(heartbeat); }, interval);
+        // And send init data
+        send(init);
       }
-    } else if (L.op == LanyardOpcode.HELLO) {
-      const hello = <LanyardHello>L;
-      interval = hello.d.heartbeat_interval;
-      send(init);
-    }
-  };
+    };
 
-  const timer = setInterval(() => { send(heartbeat); }, interval);
+    WS.onclose = () => {
+      // If tab gets inactive socket will be closed by server
+      // Reconnect if timer exists
+      if (!timer) { return; }
+      clearInterval(timer);
+      timer = null;
+      process.dev && console.info("Lanyard: WS closed, reconnecting...");
+      connect();
+    };
+    process.dev && console.info("Lanyard: WS connected");
+  };
 
   const stop = () => {
-    clearInterval(timer);
-    WS.close();
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+    WS?.close();
+    process.dev && console.info("Lanyard: WS closed");
   };
+
+  connect();
 
   return { stop };
 }
