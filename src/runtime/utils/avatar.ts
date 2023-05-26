@@ -3,7 +3,7 @@ import { DiscordUser } from "../types";
 const CDN_AVATAR = "https://cdn.discordapp.com/avatars";
 const CDN_AVATAR_DEFAULT = "https://cdn.discordapp.com/embed/avatars";
 
-export function resolveAvatar(user?: DiscordUser) {
+export function resolveAvatar(user?: DiscordUser, size = 512) {
   if (!user) { return; }
 
   // Fallback avatar
@@ -12,7 +12,7 @@ export function resolveAvatar(user?: DiscordUser) {
   }
   // Animated prefix
   if (user.avatar.startsWith("a_")) {
-    return `${CDN_AVATAR}/${user.id}/${user.avatar}.gif?size=512`;
+    return `${CDN_AVATAR}/${user.id}/${user.avatar}.gif?size=${size}`;
   }
-  return `${CDN_AVATAR}/${user.id}/${user.avatar}.webp?size=512`;
+  return `${CDN_AVATAR}/${user.id}/${user.avatar}.webp?size=${size}`;
 }
