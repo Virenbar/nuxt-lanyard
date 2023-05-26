@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useLanyard } from "#imports";
 
-const L = useLanyard({ method: "rest", id: "94490510688792576", pollInterval: 10e3 });
+// Change to your ID
+const id = "94490510688792576"; // Phineas
+const L = useLanyard({ method: "rest", id, pollInterval: 10e3 });
 </script>
 <template>
   <div>
@@ -16,7 +18,15 @@ const L = useLanyard({ method: "rest", id: "94490510688792576", pollInterval: 10
       <div class="d-flex flex-column">
         <div class="card">
           <div class="card-header">
-            <b> KV </b>
+            <b>Status Component Example</b>
+          </div>
+          <div class="card-body">
+            <DiscordStatus :data="L" />
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <b>KV Example</b>
           </div>
           <div class="card-body">
             <ul>

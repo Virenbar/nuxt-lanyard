@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import { useLanyard } from "#imports";
 
-const LM = useLanyard({
-  method: "ws", ids: [
-    "132479201470185472",
-    "94490510688792576"
-  ]
-});
-
-//const LM = useLanyard({ method: "ws", all: true });
+const LM = useLanyard({ method: "ws", all: true });
 </script>
 <template>
   <div>
@@ -20,7 +13,7 @@ const LM = useLanyard({
         </div>
         <div class="card-body">
           Status: {{ L?.discord_status }}
-          <DiscordActivity :data="L" />
+          <DiscordStatus :data="L" />
         </div>
       </div>
     </div>

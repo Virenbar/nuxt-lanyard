@@ -11,13 +11,18 @@
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <NuxtLink class="nav-link" to="single">
+            <NuxtLink class="nav-link" to="/websocket/single/">
               WebSocket - Single
             </NuxtLink>
           </li>
           <li class="nav-item">
-            <NuxtLink class="nav-link" to="multiple">
+            <NuxtLink class="nav-link" to="/websocket/multiple/">
               WebSocket - Multiple
+            </NuxtLink>
+          </li>
+          <li class="nav-item">
+            <NuxtLink class="nav-link" to="/websocket/all/">
+              ⚠WebSocket - All⚠
             </NuxtLink>
           </li>
         </ul>

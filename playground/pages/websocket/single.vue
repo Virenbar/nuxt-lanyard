@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useLanyard } from "#imports";
 
-const L = useLanyard({ method: "ws", id: "132479201470185472" });
+// Change to your ID
+const id = "94490510688792576"; // Phineas
+const L = useLanyard({ method: "ws", id });
 </script>
 <template>
   <div>
