@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.1.0
+
+[compare changes](https://undefined/undefined/compare/v1.0.2...v1.1.0)
+
+
+### 🚀 Enhancements
+
+  - New resolving functions (9f677bd)
+  - WS auto reconnect (ab93300)
+  - Size in resolveAvatar (a25a09b)
+
+### 🏡 Chore
+
+  - **docs:** Update playgroud (bdb72ce)
+
+### ❤️  Contributors
+
+- Virenbar <rib.artem@gmail.com>
+
 ## v1.0.2
 
 [compare changes](https://undefined/undefined/compare/v1.0.1...v1.0.2)
