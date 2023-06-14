@@ -3,6 +3,7 @@ import {
   Emoji, EncodedTwemoji
 } from "../types";
 
+const CDN_TWEMOJI = "https://cdn.jsdelivr.net/gh/twitter/twemoji/assets/72x72";
 const CDN_ASSET = "https://cdn.discordapp.com/app-assets";
 const CDN_EMOJI = "https://cdn.discordapp.com/emojis";
 const CDN_MEDIA = "https://media.discordapp.net";
@@ -20,13 +21,13 @@ const TwemojiExceptions: Record<string, EncodedTwemoji> = {
  * @param {AssetType} type Type of asset
  */
 export function resolveActivity(activity: Activity | undefined, type: AssetType) {
-  if (!activity || !activity.assets) { return; }
-
+  if (!activity) { return; }
   if (activity.type == 4 && activity.emoji) {
     return resolveEmoji(activity.emoji);
   }
-  const smallImage = activity.assets.small_image;
-  const largeImage = activity.assets.large_image ?? (activity.id.startsWith("spotify:") ? activity.id : undefined);
+
+  const smallImage = activity.assets?.small_image;
+  const largeImage = activity.assets?.large_image ?? (activity.id.startsWith("spotify:") ? activity.id : undefined);
 
   const asset = type == "small" ? smallImage : largeImage;
   return resolveAsset(activity.application_id, asset);
@@ -72,5 +73,5 @@ function getEncodedTwemoji(emoji: string): EncodedTwemoji {
 }
 
 function getTwemojiUrl<E extends EncodedTwemoji>(emoji: E) {
-  return `https://cdn.jsdelivr.net/gh/twitter/twemoji/assets/72x72/${emoji}.png` as const;
+  return `${CDN_TWEMOJI}/${emoji}.png` as const;
 }
