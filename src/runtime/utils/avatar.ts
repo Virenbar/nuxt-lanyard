@@ -8,7 +8,7 @@ export function resolveAvatar(user?: DiscordUser, size = 512) {
 
   // Fallback avatar
   if (!user.avatar) {
-    return `${CDN_AVATAR_DEFAULT}${parseInt(user.discriminator) % 5}.png`;
+    return `${CDN_AVATAR_DEFAULT}/${parseInt(user.discriminator) % 5}.png`;
   }
   // Animated prefix
   if (user.avatar.startsWith("a_")) {
