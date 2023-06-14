@@ -1,4 +1,4 @@
-import { Activity } from "../types";
+import { Activity, DiscordUser } from "../types";
 
 /**
  * Format start timestamp to string
@@ -19,4 +19,14 @@ export function formatStart(activity?: Activity) {
     s > 9 ? s : "0" + s
   ].filter(Boolean).join(":");
   return time;
+}
+
+/**
+ * Format username to string
+ * @param {DiscordUser} [user]
+ * @returns
+ */
+export function formatUsername(user?: DiscordUser) {
+  if (!user) { return; }
+  return user.discriminator == "0" ? user.username : `${user.username}#${user.discriminator}`;
 }
