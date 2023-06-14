@@ -16,7 +16,7 @@ const L = useLanyard({ method: "ws", id });
     <div class="d-flex">
       <div class="card">
         <div class="card-header">
-          <b> {{ L?.discord_user.username }}#{{ L?.discord_user.discriminator }}</b>
+          <b> {{ $lanyard.formatUsername(L.discord_user) }}</b>
         </div>
         <div class="card-body">
           <DiscordActivity :data="L" />

@@ -9,7 +9,7 @@ const LM = useLanyard({ method: "ws", all: true });
     <div class="d-flex flex-wrap justify-content-center">
       <div v-for="L in LM" :key="L.discord_user.id" class="card">
         <div class="card-header">
-          <b> {{ L.discord_user.username }}#{{ L.discord_user.discriminator }}</b>
+          <b> {{ $lanyard.formatUsername(L.discord_user) }}</b>
         </div>
         <div class="card-body">
           Status: {{ L?.discord_status }}

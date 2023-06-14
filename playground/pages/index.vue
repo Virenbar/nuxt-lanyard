@@ -10,7 +10,7 @@ const L = useLanyard({ method: "rest", id, pollInterval: 10e3 });
     <h4>REST - Single User</h4>
     <template v-if="L">
       <div>
-        <span>User:</span> <b> {{ L.discord_user.username }}#{{ L.discord_user.discriminator }}</b>
+        <span>User:</span> <b> {{ $lanyard.formatUsername(L.discord_user) }}</b>
         <div>
           Status: {{ L.discord_status }}
         </div>

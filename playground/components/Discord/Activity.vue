@@ -13,9 +13,11 @@ interface Props {
 <template>
   <div v-if="A" class="body">
     <div class="assets">
-      <template v-if="A.assets?.large_image">
-        <img :alt="A.assets?.large_text" :src="$lanyard.resolveActivity(A, 'large')" class="large">
-        <img v-if="A.assets.small_image" :alt="A.assets?.small_text" :src="$lanyard.resolveActivity(A, 'small')" class="small">
+      <template v-if="A">
+        <img
+          class="large" :alt="A.assets?.large_text" :src="$lanyard.resolveActivity(A, 'large')"
+          :style="A.assets?.small_image ? { 'mask': 'url(~/assets/discord/large-mask.svg)' } : ''">
+        <img v-if="A.assets?.small_image" :alt="A.assets?.small_text" :src="$lanyard.resolveActivity(A, 'small')" class="small">
       </template>
     </div>
     <div class="content">
@@ -41,7 +43,6 @@ interface Props {
   position: relative;
 
   .large {
-    mask: url("~/assets/discord/large-mask.svg");
     width: 60px;
     height: 60px;
     border-radius: 8px;
