@@ -58,7 +58,7 @@ export interface DiscordUser {
   username: string
   public_flags: number
   id: string
-  display_name: string | null
+  global_name: string | null
   discriminator: string
   bot: boolean
   avatar_decoration: string | null
