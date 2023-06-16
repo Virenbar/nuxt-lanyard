@@ -1,5 +1,29 @@
 # Changelog
 
+## v1.2.0
+
+[compare changes](https://undefined/undefined/compare/v1.1.0...v1.2.0)
+
+
+### 🚀 Enhancements
+
+  - Add global_name (1cf3a61)
+  - Username fomatter (9b99bde)
+
+### 🩹 Fixes
+
+  - Default avatar url (826dc80)
+  - ResolveActivity (b23f380)
+
+### 🏡 Chore
+
+  - **docs:** Update playgroud (1e539b1)
+  - Remove useless type (3a93dd9)
+
+### ❤️  Contributors
+
+- Virenbar <rib.artem@gmail.com>
+
 ## v1.1.0
 
 [compare changes](https://undefined/undefined/compare/v1.0.2...v1.1.0)
