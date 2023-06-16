@@ -28,4 +28,3 @@ export type LanyardConfigWS = LanyardConfigOne | LanyardConfigMany | LanyardConf
 export type LanyardConfig = LanyardConfigREST | LanyardConfigWS;
 
 export type AssetType = "small" | "large"
-export type EncodedTwemoji = `${1 | 2 | 3}${string}` | "a9" | "ae" | "e50a";

@@ -1,6 +1,5 @@
 import {
-  Activity, AssetType,
-  Emoji, EncodedTwemoji
+  Activity, AssetType, Emoji
 } from "../types";
 
 const CDN_TWEMOJI = "https://cdn.jsdelivr.net/gh/twitter/twemoji/assets/72x72";
@@ -10,7 +9,7 @@ const CDN_MEDIA = "https://media.discordapp.net";
 const APP_ICON = "https://dcdn.dstn.to/app-icons";
 const SPOTIFY = "https://i.scdn.co/image";
 
-const TwemojiExceptions: Record<string, EncodedTwemoji> = {
+const TwemojiExceptions: Record<string, string> = {
   "\u2764\ufe0f": "2764" // (❤️)
 } as const;
 
@@ -68,10 +67,10 @@ function resolveEmoji(emoji: Emoji) {
   return `${CDN_EMOJI}/${emoji.id}.${emoji.animated ? "gif" : "png"}?size=64`;
 }
 
-function getEncodedTwemoji(emoji: string): EncodedTwemoji {
+function getEncodedTwemoji(emoji: string) {
   return TwemojiExceptions[emoji] ?? [...emoji].map((point) => point.codePointAt(0)!.toString(16)).join("-");
 }
 
-function getTwemojiUrl<E extends EncodedTwemoji>(emoji: E) {
+function getTwemojiUrl(emoji: string) {
   return `${CDN_TWEMOJI}/${emoji}.png` as const;
 }
