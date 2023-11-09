@@ -4,6 +4,8 @@ import { resolve } from "path";
 import { fileURLToPath } from "url";
 import { name, version } from "../package.json";
 
+export * from "./types";
+
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
@@ -19,7 +21,7 @@ export default defineNuxtModule<ModuleOptions>({
   setup(options, nuxt) {
     const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
 
-    addPlugin(resolve(runtimeDir, "plugin.client"));
+    addPlugin(resolve(runtimeDir, "plugin"));
     addImportsDir(resolve(runtimeDir, "composables"));
 
     nuxt.options.runtimeConfig.public.lanyard = defu(nuxt.options.runtimeConfig.public.lanyard, {

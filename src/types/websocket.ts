@@ -1,7 +1,7 @@
 /*
 Types source: https://github.com/nebulatgs/sk-lanyard/blob/main/src/wsTypes.ts
 */
-import { LanyardData } from ".";
+import type { LanyardData } from ".";
 
 export enum LanyardOpcode {
   EVENT = 0,

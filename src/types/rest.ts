@@ -1,4 +1,4 @@
-import { LanyardData } from ".";
+import type { LanyardData } from ".";
 
 export interface LanyardError {
   message: string

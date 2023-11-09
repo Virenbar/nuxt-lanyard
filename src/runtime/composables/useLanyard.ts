@@ -1,30 +1,28 @@
 import { useNuxtApp, useState } from "#app";
-import { Ref, onUnmounted } from "vue";
+import { onUnmounted, type Ref } from "vue";
 import {
-  InitState,
-  LanyardConfig,
-  LanyardConfigAll,
-  LanyardConfigMany,
-  LanyardConfigOne,
-  LanyardConfigREST,
-  LanyardConfigWS,
-  LanyardData,
-  LanyardEvent,
-  LanyardHeartbeat,
-  LanyardHello,
-  LanyardInitialize,
-  LanyardInitializeData,
-  LanyardMessage,
-  LanyardOpcode
-} from "../types";
+  LanyardOpcode,
+  type InitState,
+  type LanyardConfig,
+  type LanyardConfigAll,
+  type LanyardConfigMany,
+  type LanyardConfigOne,
+  type LanyardConfigREST,
+  type LanyardConfigWS,
+  type LanyardData,
+  type LanyardEvent,
+  type LanyardHeartbeat,
+  type LanyardHello,
+  type LanyardInitialize,
+  type LanyardInitializeData,
+  type LanyardMessage
+} from "../../types";
 
 let apiURL: string;
 
 export function useLanyard(config: LanyardConfigMany | LanyardConfigAll): Ref<Record<string, LanyardData>>
 export function useLanyard(config: LanyardConfigREST | LanyardConfigOne): Ref<LanyardData>
 export function useLanyard(config: LanyardConfig) {
-  if (typeof window === "undefined") { return; }
-
   apiURL = useNuxtApp().$lanyard.apiURL;
 
   if (config.method == "rest") {
@@ -67,12 +65,22 @@ function useWS<T extends InitState>(config: LanyardConfigWS, data: Ref<T>) {
   const single = "id" in config;
   // Initialization data
   let d: LanyardInitializeData;
-  if ("all" in config) { d = { subscribe_to_all: config.all }; }
-  else if ("ids" in config) { d = { subscribe_to_ids: config.ids }; }
-  else if ("id" in config) { d = { subscribe_to_id: config.id }; }
-  else { throw new Error("Invalid lanyard config"); }
+  if ("all" in config) {
+    d = { subscribe_to_all: config.all };
+  }
+  else if ("ids" in config) {
+    d = { subscribe_to_ids: config.ids };
+  }
+  else if ("id" in config) {
+    d = { subscribe_to_id: config.id };
+  }
+  else {
+    throw new Error("Invalid lanyard config");
+  }
   // Messages for websocket
-  const heartbeat: LanyardHeartbeat = { op: 3 };
+  const heartbeat: LanyardHeartbeat = {
+    op: LanyardOpcode.HEARTBEAT
+  };
   const init: LanyardInitialize = {
     op: LanyardOpcode.INITIALIZE,
     d: d

@@ -1,4 +1,4 @@
-import { Activity, DiscordUser } from "../types";
+import type { Activity, DiscordUser } from "../../types";
 
 /**
  * Format start timestamp to string

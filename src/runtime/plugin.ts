@@ -1,8 +1,8 @@
 import { defineNuxtPlugin, useRuntimeConfig } from "#app";
-import { LanyardResponse } from "./types";
+import type { LanyardResponse } from "../types";
 import {
   formatStart, formatUsername,
-  resolveActivity, resolveAvatar
+  resolveActivity, resolveAvatar, resolveColor
 } from "./utils";
 
 export default defineNuxtPlugin(() => {
@@ -31,6 +31,7 @@ export default defineNuxtPlugin(() => {
         getData,
         resolveActivity,
         resolveAvatar,
+        resolveColor,
         formatStart,
         formatUsername
       }

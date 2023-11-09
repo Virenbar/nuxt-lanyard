@@ -1,4 +1,4 @@
-import { DiscordUser } from "../types";
+import type { DiscordUser } from "../../types";
 
 const CDN_AVATAR = "https://cdn.discordapp.com/avatars";
 const CDN_AVATAR_DEFAULT = "https://cdn.discordapp.com/embed/avatars";
