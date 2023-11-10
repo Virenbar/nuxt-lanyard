@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.3.2
+
+[compare changes](https://undefined/undefined/compare/v1.3.1...v1.3.2)
+
+### 🩹 Fixes
+
+- Another try to fix plugin (867fc03)
+
+### ❤️ Contributors
+
+- Virenbar
+
 ## v1.3.1
 
 [compare changes](https://undefined/undefined/compare/v1.3.0...v1.3.1)
