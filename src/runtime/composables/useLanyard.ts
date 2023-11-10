@@ -88,7 +88,7 @@ function useWS<T extends InitState>(config: LanyardConfigWS, data: Ref<T>) {
 
   let interval = 30e3;
   let WS: WebSocket | null;
-  let timer: NodeJS.Timer | null;
+  let timer: NodeJS.Timeout | null;
 
   const send = <T>(message: T) => WS?.send(JSON.stringify(message));
   const connect = () => {
