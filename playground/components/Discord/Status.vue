@@ -1,19 +1,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { LanyardData } from "~/../dist/runtime/types";
+import type { LanyardData } from "~/../dist/module";
 const props = defineProps<Props>();
 interface Props { data?: LanyardData | null }
 
 const user = computed(() => props.data?.discord_user);
 const status = computed(() => props.data?.discord_status);
-const color = computed(() => {
-  switch (props.data?.discord_status) {
-    case "online": return "#23a55a";
-    case "idle": return "#f0b232";
-    case "dnd": return "#f23f43";
-    default: return "#80848e";
-  }
-});
 
 const avatarSize = 100;
 const statusSize = 30;
@@ -28,7 +20,7 @@ const colorRect = {
   xy: avatarSize - statusSize * (1 - 0.4 / 2)
 };
 const avatarMask = {
-  c: 1 - (statusSize / 2) / avatarSize, //cx cy
+  c: 1 - (statusSize / 2) / avatarSize, // cx cy
   r: (statusSize / 2) / avatarSize
 };
 </script>
@@ -54,7 +46,6 @@ const avatarMask = {
       <circle fill="black" cx="0.5" cy="0.5" r="0.25" />
     </mask>
   </svg>
-  <!-- <div>{{ user?.username }} {{ status }}</div> -->
   <div class="wrapper" :style="`width: ${avatarSize}px;height: ${avatarSize}px;`">
     <svg class="mask svg">
       <foreignObject x="0" y="0" :width="avatarSize" :height="avatarSize" mask="url(#svg-mask-avatar)">
@@ -63,7 +54,9 @@ const avatarMask = {
         </div>
       </foreignObject>
       <circle fill="black" :cx="statusCircle.c" :cy="statusCircle.c" :r="statusCircle.r" style="opacity: 0.45;" />
-      <rect :width="colorRect.wh" :height="colorRect.wh" :x="colorRect.xy" :y="colorRect.xy" :fill="color" :mask="`url(#svg-mask-status-${status})`" />
+      <rect
+        :width="colorRect.wh" :height="colorRect.wh" :x="colorRect.xy" :y="colorRect.xy" :fill="$lanyard.resolveColor(status)"
+        :mask="`url(#svg-mask-status-${status})`" />
     </svg>
   </div>
 </template>

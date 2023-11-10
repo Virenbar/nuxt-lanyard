@@ -1,24 +1,27 @@
 <script setup lang="ts">
+import mask from "@/assets/discord/large-mask.svg";
 import { computed } from "vue";
-import { Activity, LanyardData } from "~/../dist/runtime/types";
+import type { Activity, LanyardData } from "~/../dist/module";
+
 const props = defineProps<Props>();
-
-const A = computed(() => props.activity ?? props.data?.activities.filter(A => A.type == 0)[0]);
-
 interface Props {
   data?: LanyardData | null
   activity?: Activity | null
 }
+
+const A = computed(() => props.activity ?? props.data?.activities.filter(A => A.type == 0)[0]);
 </script>
 <template>
   <div v-if="A" class="body">
     <div class="assets">
-      <template v-if="A">
-        <img
-          class="large" :alt="A.assets?.large_text" :src="$lanyard.resolveActivity(A, 'large')"
-          :style="A.assets?.small_image ? { 'mask': 'url(~/assets/discord/large-mask.svg)' } : ''">
-        <img v-if="A.assets?.small_image" :alt="A.assets?.small_text" :src="$lanyard.resolveActivity(A, 'small')" class="small">
-      </template>
+      <img
+        class="large" :alt="A.assets?.large_text" :src="$lanyard.resolveActivity(A, 'large')"
+        :style="A.assets?.small_image ? { 'mask-image': `url(${mask})` } : ''">
+      <img
+        v-if="A.assets?.small_image"
+        class="small"
+        :alt="A.assets?.small_text"
+        :src="$lanyard.resolveActivity(A, 'small')">
     </div>
     <div class="content">
       <div class="name">
