@@ -1,4 +1,4 @@
-import { useNuxtApp, useState } from "#app";
+import { useNuxtApp, useState } from "#imports";
 import { onUnmounted, type Ref } from "vue";
 import {
   LanyardOpcode,
