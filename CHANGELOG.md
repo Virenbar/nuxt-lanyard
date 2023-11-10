@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.3.1
+
+[compare changes](https://undefined/undefined/compare/v1.3.0...v1.3.1)
+
+### 🩹 Fixes
+
+- Move types back to runtime (cf32f65)
+
+### 🏡 Chore
+
+- Cleanup changelog (3181a3f)
+
+### ❤️ Contributors
+
+- Virenbar
+
 ## v1.3.0
 
 [compare changes](https://undefined/undefined/compare/v1.2.0...v1.3.0)
