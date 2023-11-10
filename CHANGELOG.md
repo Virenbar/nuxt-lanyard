@@ -1,5 +1,26 @@
 # Changelog
 
+## v1.3.0
+
+[compare changes](https://undefined/undefined/compare/v1.2.0...v1.3.0)
+
+### 🚀 Enhancements
+
+- Move and expose types (910f3b1)
+- Add color resolver (51028b5)
+
+### 🩹 Fixes
+
+- Wrong timer type (b35cece)
+
+### 🏡 Chore
+
+- **docs:** Update playgroud (f7bd448)
+
+### ❤️ Contributors
+
+- Virenbar
+
 ## v1.2.0
 
 [compare changes](https://undefined/undefined/compare/v1.1.0...v1.2.0)
