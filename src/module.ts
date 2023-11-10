@@ -1,7 +1,5 @@
-import { addImportsDir, addPlugin, defineNuxtModule } from "@nuxt/kit";
+import { addImportsDir, addPlugin, createResolver, defineNuxtModule } from "@nuxt/kit";
 import { defu } from "defu";
-import { resolve } from "path";
-import { fileURLToPath } from "url";
 import { name, version } from "../package.json";
 
 export * from "./runtime/types";
@@ -19,10 +17,11 @@ export default defineNuxtModule<ModuleOptions>({
     apiURL: "api.lanyard.rest"
   },
   setup(options, nuxt) {
-    const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
+    const { resolve } = createResolver(import.meta.url);
+    const resolveRuntimeModule = (path: string) => resolve("./runtime", path);
 
-    addPlugin(resolve(runtimeDir, "plugin"));
-    addImportsDir(resolve(runtimeDir, "composables"));
+    addPlugin(resolveRuntimeModule("./plugin"));
+    addImportsDir(resolveRuntimeModule("./composables"));
 
     nuxt.options.runtimeConfig.public.lanyard = defu(nuxt.options.runtimeConfig.public.lanyard, {
       apiURL: options.apiURL
@@ -31,5 +30,9 @@ export default defineNuxtModule<ModuleOptions>({
 });
 
 export interface ModuleOptions {
+  /**
+   * API URL for Lanyard
+   * @default `api.lanyard.rest`
+   */
   apiURL: string
 }
