@@ -1,4 +1,4 @@
-import type { DiscordStatus } from "../../types";
+import type { DiscordStatus } from "../types";
 
 export function resolveColor(status?: DiscordStatus | null) {
   switch (status) {

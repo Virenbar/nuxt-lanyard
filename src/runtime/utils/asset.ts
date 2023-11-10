@@ -1,4 +1,4 @@
-import type { Activity, AssetType, Emoji } from "../../types";
+import type { Activity, AssetType, Emoji } from "../types";
 
 const CDN_TWEMOJI = "https://cdn.jsdelivr.net/gh/twitter/twemoji/assets/72x72";
 const CDN_ASSET = "https://cdn.discordapp.com/app-assets";

@@ -16,7 +16,7 @@ import {
   type LanyardInitialize,
   type LanyardInitializeData,
   type LanyardMessage
-} from "../../types";
+} from "../types";
 
 let apiURL: string;
 

@@ -4,7 +4,7 @@ import { resolve } from "path";
 import { fileURLToPath } from "url";
 import { name, version } from "../package.json";
 
-export * from "./types";
+export * from "./runtime/types";
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
