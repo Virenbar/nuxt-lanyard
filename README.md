@@ -20,7 +20,7 @@ The `$lanyard` plugin provides resolving/formatting function.
 - 🏷️ Single composable for fetching lanyard data
 - 🌐 REST/WebSocket support
 - 🧹 Socket/Connection auto close on unmount
-- 📃 Resolving/Formatting functions (WIP)
+- 📃 Resolving/Formatting functions
 
 ## Quick Setup
 
