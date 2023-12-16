@@ -8,7 +8,7 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
-    configKey: "nuxt-lanyard",
+    configKey: "lanyard",
     compatibility: {
       nuxt: "^3.0.0"
     }

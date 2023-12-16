@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useLanyard } from "#imports";
 
+// 94490510688792576 - Phineas
+// 132479201470185472 - Virenbar
 // Change to your ID
-const id = "94490510688792576"; // Phineas
+const id = "94490510688792576";
 const L = useLanyard({ method: "rest", id, pollInterval: 10e3 });
 </script>
 <template>

@@ -1,4 +1,5 @@
-import { useNuxtApp, useState } from "#imports";
+import { useRuntimeConfig, useState } from "#app";
+import { useLanyardHelper } from "#imports";
 import { onUnmounted, type Ref } from "vue";
 import {
   LanyardOpcode,
@@ -23,7 +24,8 @@ let apiURL: string;
 export function useLanyard(config: LanyardConfigMany | LanyardConfigAll): Ref<Record<string, LanyardData>>
 export function useLanyard(config: LanyardConfigREST | LanyardConfigOne): Ref<LanyardData>
 export function useLanyard(config: LanyardConfig) {
-  apiURL = useNuxtApp().$lanyard.apiURL;
+  const options = useRuntimeConfig().public.lanyard;
+  apiURL = options.apiURL;
 
   if (config.method == "rest") {
     const data = useState<LanyardData>();
@@ -47,7 +49,7 @@ export function useLanyard(config: LanyardConfig) {
 }
 
 function useREST(config: LanyardConfigREST, data: Ref<LanyardData>) {
-  const { getData } = useNuxtApp().$lanyard;
+  const { getData } = useLanyardHelper();
   const updateData = async () => {
     data.value = await getData(config.id);
   };
@@ -127,7 +129,7 @@ function useWS<T extends InitState>(config: LanyardConfigWS, data: Ref<T>) {
       if (!timer) { return; }
       clearInterval(timer);
       timer = null;
-      process.dev && console.info("Lanyard: WS closed, reconnecting...");
+      process.dev && console.info("Lanyard: WS closed by server, reconnecting...");
       connect();
     };
     process.dev && console.info("Lanyard: WS connected");
@@ -139,7 +141,7 @@ function useWS<T extends InitState>(config: LanyardConfigWS, data: Ref<T>) {
       timer = null;
     }
     WS?.close();
-    process.dev && console.info("Lanyard: WS closed");
+    process.dev && console.info("Lanyard: WS closed by client");
   };
 
   connect();

@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     }
   },
   modules: ["../src/module"],
-  "nuxt-lanyard": {
+  "lanyard": {
     apiURL: "api.lanyard.rest"
-  }
+  },
+  devtools: { enabled: true }
 });

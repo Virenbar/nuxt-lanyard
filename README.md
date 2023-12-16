@@ -9,7 +9,7 @@ A Nuxt module to track your Discord status using [Lanyard API](https://github.co
 
 The `useLanyard` composable returns a reactive state containing lanyard data.
 
-The `$lanyard` plugin provides resolving/formatting function.
+The `useLanyardHelper` composable provides resolving/formatting function.
 
 - [✨ Release Notes](/CHANGELOG.md)
 - [🏀 Online playground](https://stackblitz.com/github/virenbar/nuxt-lanyard?file=playground%2Fapp.vue)
