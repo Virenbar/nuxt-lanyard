@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed } from "#imports";
 import type { LanyardData } from "~/../dist/module";
 const props = defineProps<Props>();
 interface Props { data?: LanyardData | null }
@@ -47,7 +47,7 @@ const avatarMask = {
     </mask>
   </svg>
   <div class="wrapper" :style="`width: ${avatarSize}px;height: ${avatarSize}px;`">
-    <svg class="mask svg">
+    <svg class="mask svg" :width="avatarSize" :height="avatarSize">
       <foreignObject x="0" y="0" :width="avatarSize" :height="avatarSize" mask="url(#svg-mask-avatar)">
         <div class="avatarStack">
           <img :src="$lanyard.resolveAvatar(user, 128)" class="avatar">
@@ -60,6 +60,7 @@ const avatarMask = {
     </svg>
   </div>
 </template>
+<!-- Style from Discord -->
 <style scoped lang="scss">
 .wrapper {
   border-radius: 50%;

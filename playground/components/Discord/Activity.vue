@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { computed } from "#imports";
 import mask from "@/assets/discord/large-mask.svg";
-import { computed } from "vue";
 import type { Activity, LanyardData } from "~/../dist/module";
 
 const props = defineProps<Props>();

@@ -10,5 +10,10 @@ export default defineNuxtConfig({
   "lanyard": {
     apiURL: "api.lanyard.rest"
   },
+  runtimeConfig: {
+    public: {
+      ID: "94490510688792576", // Phineas
+    }
+  },
   devtools: { enabled: true }
 });

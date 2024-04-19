@@ -1,26 +1,22 @@
 <script setup lang="ts">
-import { useLanyard } from "#imports";
-
-// 94490510688792576 - Phineas
-// 132479201470185472 - Virenbar
-// Change to your ID
-const id = "94490510688792576";
+import { useLanyard, useLanyardHelper, useRuntimeConfig } from "#imports";
+const { formatUsername } = useLanyardHelper();
+const id = useRuntimeConfig().public.ID as string;
 const L = useLanyard({ method: "rest", id, pollInterval: 10e3 });
 </script>
 <template>
-  <div>
+  <div class="container p-3">
     <h4>REST - Single User</h4>
     <template v-if="L">
-      <div>
-        <span>User:</span> <b> {{ $lanyard.formatUsername(L.discord_user) }}</b>
-        <div>
-          Status: {{ L.discord_status }}
-        </div>
-      </div>
-      <div class="d-flex flex-column">
+      <ul>
+        <li>User: <b>{{ formatUsername(L.discord_user) }}</b> {{ L.discord_user.global_name }}</li>
+        <li>Status: {{ L.discord_status }}</li>
+      </ul>
+
+      <div class="d-flex align-items-top justify-content-center">
         <div class="card">
           <div class="card-header">
-            <b>Status Component Example</b>
+            <b>Status Example</b>
           </div>
           <div class="card-body">
             <DiscordStatus :data="L" />
@@ -40,7 +36,7 @@ const L = useLanyard({ method: "rest", id, pollInterval: 10e3 });
         </div>
         <div class="card">
           <div class="card-header">
-            <b>Activity Component Example</b>
+            <b>Activity Example</b>
           </div>
           <div class="card-body">
             <DiscordActivity :data="L" />
@@ -50,3 +46,8 @@ const L = useLanyard({ method: "rest", id, pollInterval: 10e3 });
     </template>
   </div>
 </template>
+<style scoped>
+.container {
+  max-width: 50rem;
+}
+</style>
