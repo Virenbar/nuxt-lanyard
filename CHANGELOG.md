@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.4.0
+
+[compare changes](https://undefined/undefined/compare/v1.3.3...v1.4.0)
+
+### 🚀 Enhancements
+
+- Add helper (fe18053)
+
+### 🏡 Chore
+
+- **docs:** Update playgroud (20e2fb6)
+- Bump dependencies (54a8f3d)
+- Update code style (d8eb9cb)
+
+### ❤️ Contributors
+
+- Virenbar
+
 ## v1.3.3
 
 [compare changes](https://undefined/undefined/compare/v1.3.2...v1.3.3)
