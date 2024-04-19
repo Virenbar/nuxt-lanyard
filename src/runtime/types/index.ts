@@ -1,30 +1,29 @@
-
-export * from "./lanyard";
-export * from "./rest";
-export * from "./websocket";
+export * from './lanyard'
+export * from './rest'
+export * from './websocket'
 
 export interface LanyardConfigREST {
-  method: "rest"
+  method: 'rest'
   id: string
   pollInterval?: number
 }
 
 export interface LanyardConfigOne {
-  method: "ws"
+  method: 'ws'
   id: string
 }
 
 export interface LanyardConfigMany {
-  method: "ws"
+  method: 'ws'
   ids: string[]
 }
 
 export interface LanyardConfigAll {
-  method: "ws"
+  method: 'ws'
   all: true
 }
 
-export type LanyardConfigWS = LanyardConfigOne | LanyardConfigMany | LanyardConfigAll;
-export type LanyardConfig = LanyardConfigREST | LanyardConfigWS;
+export type LanyardConfigWS = LanyardConfigOne | LanyardConfigMany | LanyardConfigAll
+export type LanyardConfig = LanyardConfigREST | LanyardConfigWS
 
-export type AssetType = "small" | "large"
+export type AssetType = 'small' | 'large'

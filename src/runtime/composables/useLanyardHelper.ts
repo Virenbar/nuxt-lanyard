@@ -1,13 +1,13 @@
-import { useRuntimeConfig } from "#app";
-import type { LanyardResponse } from "../types";
+import type { LanyardResponse } from '../types'
 import {
   formatStart, formatUsername,
-  resolveActivity, resolveAvatar, resolveColor
-} from "./../utils";
+  resolveActivity, resolveAvatar, resolveColor,
+} from './../utils'
+import { useRuntimeConfig } from '#app'
 
 export function useLanyardHelper() {
-  const options = useRuntimeConfig().public.lanyard;
-  const apiURL = options.apiURL;
+  const options = useRuntimeConfig().public.lanyard
+  const apiURL = options.apiURL
 
   /**
    * Get Lanyard Data
@@ -15,12 +15,13 @@ export function useLanyardHelper() {
    * @returns Lanyard Data
    */
   async function getData(userID?: string) {
-    const response = await fetch(`https://${apiURL}/v1/users/${userID}`);
-    const body = await response.json() as LanyardResponse;
+    const response = await fetch(`https://${apiURL}/v1/users/${userID}`)
+    const body = await response.json() as LanyardResponse
     if (body.success) {
-      return body.data;
-    } else {
-      throw new Error(body.error.message);
+      return body.data
+    }
+    else {
+      throw new Error(body.error.message)
     }
   }
 
@@ -30,6 +31,6 @@ export function useLanyardHelper() {
     resolveAvatar,
     resolveColor,
     formatStart,
-    formatUsername
-  };
+    formatUsername,
+  }
 }

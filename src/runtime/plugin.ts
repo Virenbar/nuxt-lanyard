@@ -1,8 +1,8 @@
-import { defineNuxtPlugin } from "#app";
 import {
   formatStart, formatUsername,
-  resolveActivity, resolveAvatar, resolveColor
-} from "./utils";
+  resolveActivity, resolveAvatar, resolveColor,
+} from './utils'
+import { defineNuxtPlugin } from '#app'
 
 export default defineNuxtPlugin(() => {
   return {
@@ -12,8 +12,8 @@ export default defineNuxtPlugin(() => {
         resolveAvatar,
         resolveColor,
         formatStart,
-        formatUsername
-      }
-    }
-  };
-});
+        formatUsername,
+      },
+    },
+  }
+})

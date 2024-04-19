@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { useLanyard, useLanyardHelper, useRuntimeConfig } from "#imports";
-const { formatUsername } = useLanyardHelper();
-const id = useRuntimeConfig().public.ID as string;
-const L = useLanyard({ method: "rest", id, pollInterval: 10e3 });
+import { useLanyard, useLanyardHelper, useRuntimeConfig } from '#imports'
+
+const { formatUsername } = useLanyardHelper()
+const id = useRuntimeConfig().public.ID as string
+const L = useLanyard({ method: 'rest', id, pollInterval: 10e3 })
 </script>
+
 <template>
   <div class="container p-3">
     <h4>REST - Single User</h4>
@@ -28,7 +30,10 @@ const L = useLanyard({ method: "rest", id, pollInterval: 10e3 });
           </div>
           <div class="card-body">
             <ul>
-              <li v-for="V, K in L.kv" :key="K">
+              <li
+                v-for="V, K in L.kv"
+                :key="K"
+              >
                 {{ K }}: {{ V }}
               </li>
             </ul>
@@ -46,6 +51,7 @@ const L = useLanyard({ method: "rest", id, pollInterval: 10e3 });
     </template>
   </div>
 </template>
+
 <style scoped>
 .container {
   max-width: 50rem;

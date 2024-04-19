@@ -1,13 +1,13 @@
 /*
 Types source: https://github.com/nebulatgs/sk-lanyard/blob/main/src/wsTypes.ts
 */
-import type { LanyardData } from ".";
+import type { LanyardData } from '.'
 
 export enum LanyardOpcode {
   EVENT = 0,
   HELLO = 1,
   INITIALIZE = 2,
-  HEARTBEAT = 3
+  HEARTBEAT = 3,
 }
 
 export interface LanyardInitializeOne {
@@ -26,12 +26,12 @@ export interface LanyardInitializeAll {
   subscribe_to_all: boolean
 }
 
-export type LanyardInitializeData = | LanyardInitializeOne | LanyardInitializeMany | LanyardInitializeAll;
-export type LanyardEventType = "INIT_STATE" | "PRESENCE_UPDATE"
+export type LanyardInitializeData = | LanyardInitializeOne | LanyardInitializeMany | LanyardInitializeAll
+export type LanyardEventType = 'INIT_STATE' | 'PRESENCE_UPDATE'
 export type InitState = LanyardData | Record<string, LanyardData>
-// Documentation says there is `user_id`, but it does't exists 
-export type PresenceUpdate = LanyardData /*| (LanyardData & { user_id: string })*/
-export type LanyardEvents = { INIT_STATE: InitState; PRESENCE_UPDATE: PresenceUpdate }
+// Documentation says there is `user_id`, but it does't exists
+export type PresenceUpdate = LanyardData /* | (LanyardData & { user_id: string }) */
+export type LanyardEvents = { INIT_STATE: InitState, PRESENCE_UPDATE: PresenceUpdate }
 
 export interface LanyardMessage<T> {
   op: LanyardOpcode
@@ -58,7 +58,7 @@ export interface LanyardInitialize extends LanyardMessage<LanyardInitializeData>
   t?: never
 }
 
-export interface LanyardHeartbeat extends Omit<LanyardMessage<never>, "d"> {
+export interface LanyardHeartbeat extends Omit<LanyardMessage<never>, 'd'> {
   op: LanyardOpcode.HEARTBEAT
   seq?: never
   t?: never

@@ -1,4 +1,4 @@
-import type { LanyardData } from ".";
+import type { LanyardData } from '.'
 
 export interface LanyardError {
   message: string
@@ -15,4 +15,4 @@ export interface LanyardErrorResponse {
   error: LanyardError
 }
 
-export type LanyardResponse = LanyardDataResponse | LanyardErrorResponse;
+export type LanyardResponse = LanyardDataResponse | LanyardErrorResponse
