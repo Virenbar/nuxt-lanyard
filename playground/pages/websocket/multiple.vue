@@ -33,3 +33,9 @@ const LM = useLanyard({ method: 'ws', ids })
     </div>
   </div>
 </template>
+
+<style scoped>
+.container {
+  max-width: 50rem;
+}
+</style>

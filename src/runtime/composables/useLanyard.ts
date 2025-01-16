@@ -19,33 +19,27 @@ import {
 import { useRuntimeConfig, useState } from '#app'
 import { useLanyardHelper } from '#imports'
 
-let apiURL: string
-
-export function useLanyard(config: LanyardConfigMany | LanyardConfigAll): Ref<Record<string, LanyardData>>
-export function useLanyard(config: LanyardConfigREST | LanyardConfigOne): Ref<LanyardData>
+export function useLanyard(config: LanyardConfigMany | LanyardConfigAll): Ref<Record<string, LanyardData>> | null
+export function useLanyard(config: LanyardConfigREST | LanyardConfigOne): Ref<LanyardData> | null
 export function useLanyard(config: LanyardConfig) {
-  const options = useRuntimeConfig().public.lanyard
-  apiURL = options.apiURL
-
-  if (config.method == 'rest') {
+  if (import.meta.server) return null
+  if ('id' in config) {
     const data = useState<LanyardData>()
-    const { stop } = useREST(config, data)
-    onUnmounted(stop)
+    if (config.method == 'rest') {
+      const { stop } = useREST(config, data)
+      onUnmounted(stop)
+    }
+    if (config.method == 'ws') {
+      const { stop } = useWS(config, data)
+      onUnmounted(stop)
+    }
     return data
   }
-  if (config.method == 'ws') {
-    if ('id' in config) {
-      const data = useState<LanyardData>()
-      const { stop } = useWS(config, data)
-      onUnmounted(stop)
-      return data
-    }
-    else {
-      const data = useState<Record<string, LanyardData>>()
-      const { stop } = useWS(config, data)
-      onUnmounted(stop)
-      return data
-    }
+  else {
+    const data = useState<Record<string, LanyardData>>()
+    const { stop } = useWS(config, data)
+    onUnmounted(stop)
+    return data
   }
 }
 
@@ -66,6 +60,8 @@ function useWS<T extends InitState>(config: LanyardConfigWS, data: Ref<T>) {
   if (!supportsWebSocket) {
     throw new Error('Browser doesn\'t support WebSocket connections.')
   }
+
+  const { apiURL } = useRuntimeConfig().public.lanyard
 
   const single = 'id' in config
   // Initialization data

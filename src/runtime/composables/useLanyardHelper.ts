@@ -6,8 +6,7 @@ import {
 import { useRuntimeConfig } from '#app'
 
 export function useLanyardHelper() {
-  const options = useRuntimeConfig().public.lanyard
-  const apiURL = options.apiURL
+  const { apiURL } = useRuntimeConfig().public.lanyard
 
   /**
    * Get Lanyard Data

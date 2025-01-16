@@ -5,12 +5,9 @@
     },
     "editor.tabSize": 2,
     "typescript.tsdk": "node_modules/typescript/lib",
-    "[javascript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
     "eslint.validate": [
         "javascript",
         "typescript"
     ],
-    "eslint.experimental.useFlatConfig": true
+    "eslint.useFlatConfig": true
 }

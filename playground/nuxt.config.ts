@@ -1,5 +1,4 @@
 export default defineNuxtConfig({
-  ssr: false,
   app: {
     head: {
       link: [{ href: 'https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/darkly/bootstrap.min.css', rel: 'stylesheet' }],

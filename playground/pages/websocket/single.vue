@@ -10,7 +10,10 @@ const L = useLanyard({ method: 'ws', id })
   <div class="container p-3">
     <h4>WebSocket - Single User</h4>
     <div class="d-flex flex-wrap justify-content-center">
-      <div class="card">
+      <div
+        :if="L"
+        class="card"
+      >
         <div class="card-header">
           <b> {{ formatUsername(L?.discord_user) }}</b>
         </div>
@@ -25,3 +28,9 @@ const L = useLanyard({ method: 'ws', id })
     </div>
   </div>
 </template>
+
+<style scoped>
+.container {
+  max-width: 50rem;
+}
+</style>
