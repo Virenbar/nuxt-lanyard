@@ -1,6 +1,6 @@
 {
   "name": "@virenbar/nuxt-lanyard",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A Nuxt module to track your Discord status using Lanyard API",
   "keywords": [
     "nuxt",

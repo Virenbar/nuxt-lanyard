@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.4.1
+
+[compare changes](https://undefined/undefined/compare/v1.4.0...v1.4.1)
+
+### 🩹 Fixes
+
+- Add workaround for yarn bug (213cc1b)
+- Not working with SSR (8e3a262)
+
+### ❤️ Contributors
+
+- Virenbar
+
 ## v1.4.0
 
 [compare changes](https://undefined/undefined/compare/v1.3.3...v1.4.0)
