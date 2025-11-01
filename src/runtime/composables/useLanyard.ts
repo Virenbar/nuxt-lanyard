@@ -135,10 +135,10 @@ function useWS<T extends InitState>(config: LanyardConfigWS, data: Ref<T>) {
       }
       clearInterval(timer)
       timer = null
-      import.meta.dev && console.info('Lanyard: WS closed by server, reconnecting...')
+      if (import.meta.dev) console.info('Lanyard: WS closed by server, reconnecting...')
       connect()
     }
-    import.meta.dev && console.info('Lanyard: WS connected')
+    if (import.meta.dev) console.info('Lanyard: WS connected')
   }
 
   const stop = () => {
@@ -147,7 +147,7 @@ function useWS<T extends InitState>(config: LanyardConfigWS, data: Ref<T>) {
       timer = null
     }
     WS?.close()
-    import.meta.dev && console.info('Lanyard: WS closed by client')
+    if (import.meta.dev) console.info('Lanyard: WS closed by client')
   }
 
   connect()

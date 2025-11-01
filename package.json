@@ -12,50 +12,54 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
     }
   },
-  "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
+  "main": "./dist/module.mjs",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/types.d.mts"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",
-    "dev": "nuxi dev playground",
+    "dev": "npm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.10.0",
+    "@nuxt/kit": "^4.2.0",
     "defu": "^6.1.4"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^1.2.0",
-    "@nuxt/eslint": "^0.3.8",
-    "@nuxt/module-builder": "^0.5.5",
-    "@nuxt/schema": "^3.10.0",
-    "@nuxt/test-utils": "^3.10.0",
-    "@types/node": "^20.12.7",
-    "changelogen": "^0.5.5",
-    "eslint": "^9.0.0",
-    "nuxt": "^3.10.0",
-    "sass": "^1.75.0",
-    "sass-loader": "^14.2.1",
-    "typescript": "^5.4.5",
-    "vitest": "^1.5.0"
+    "@nuxt/devtools": "^2.7.0",
+    "@nuxt/eslint": "^1.10.0",
+    "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/schema": "^4.2.0",
+    "@nuxt/test-utils": "^3.20.1",
+    "@types/node": "^24.9.2",
+    "changelogen": "^0.6.2",
+    "eslint": "9.38.0",
+    "nuxt": "^4.2.0",
+    "sass": "^1.93.3",
+    "sass-loader": "^16.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "^4.0.4",
+    "vue-tsc": "^3.1.2"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
-  },
-  "resolutions": {
-    "jackspeak": "2.1.1"
   }
 }
