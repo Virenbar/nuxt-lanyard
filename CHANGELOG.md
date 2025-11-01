@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.5.0
+
+[compare changes](https://undefined/undefined/compare/v1.4.1...v1.5.0)
+
+### 🚀 Enhancements
+
+- Support for nuxt 4, updated dependencies (e727d84)
+
+### ❤️ Contributors
+
+- Virenbar ([@Virenbar](https://github.com/Virenbar))
+
 ## v1.4.1
 
 [compare changes](https://undefined/undefined/compare/v1.4.0...v1.4.1)
