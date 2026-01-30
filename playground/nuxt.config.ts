@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['../src/module'],
+  modules: ['@virenbar/nuxt-lanyard'],
   devtools: { enabled: true },
   app: {
     head: {
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       ID: '94490510688792576', // Phineas
     },
   },
-  compatibilityDate: '2025-11-01',
+  compatibilityDate: 'latest',
   lanyard: {
     apiURL: 'api.lanyard.rest',
   },

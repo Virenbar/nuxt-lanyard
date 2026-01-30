@@ -16,8 +16,7 @@ import {
   type LanyardInitializeData,
   type LanyardMessage,
 } from '../types'
-import { useRuntimeConfig, useState } from '#app'
-import { useLanyardHelper } from '#imports'
+import { useLanyardHelper, useRuntimeConfig, useState } from '#imports'
 
 export function useLanyard(config: LanyardConfigMany | LanyardConfigAll): Ref<Record<string, LanyardData>> | null
 export function useLanyard(config: LanyardConfigREST | LanyardConfigOne): Ref<LanyardData> | null

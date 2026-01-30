@@ -8,6 +8,7 @@
     "generate": "nuxi generate"
   },
   "devDependencies": {
-    "nuxt": "^4.2.0"
+    "@virenbar/nuxt-lanyard": "latest",
+    "nuxt": "^4.3.0"
   }
 }

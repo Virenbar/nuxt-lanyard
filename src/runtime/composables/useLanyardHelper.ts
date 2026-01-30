@@ -3,7 +3,7 @@ import {
   formatStart, formatUsername,
   resolveActivity, resolveAvatar, resolveColor,
 } from './../utils'
-import { useRuntimeConfig } from '#app'
+import { useRuntimeConfig } from '#imports'
 
 export function useLanyardHelper() {
   const { apiURL } = useRuntimeConfig().public.lanyard
