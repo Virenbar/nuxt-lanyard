@@ -4,10 +4,9 @@
         "source.fixAll.markdownlint": "explicit"
     },
     "editor.tabSize": 2,
-    "typescript.tsdk": "node_modules/typescript/lib",
+    "js/ts.tsdk.path": "node_modules/typescript/lib",
     "eslint.validate": [
         "javascript",
         "typescript"
-    ],
-    "eslint.useFlatConfig": true
+    ]
 }

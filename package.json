@@ -32,9 +32,9 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",
-    "dev": "npm run dev:prepare && nuxi dev playground",
-    "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "dev": "npm run dev:prepare && nuxt dev playground",
+    "dev:build": "nuxt build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt prepare playground",
     "dev:release": "npm run lint && npm run test && npm run prepack && changelogen --release",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "lint": "eslint .",
@@ -43,24 +43,24 @@
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt/kit": "^4.3.0",
-    "defu": "^6.1.4"
+    "@nuxt/kit": "^4.6.2",
+    "defu": "^6.1.7"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^3.1.1",
-    "@nuxt/eslint": "^1.13.0",
-    "@nuxt/module-builder": "^1.0.2",
-    "@nuxt/schema": "^4.3.0",
-    "@nuxt/test-utils": "^3.23.0",
+    "@nuxt/devtools": "^3.4.3" ,
+    "@nuxt/eslint-config": "^1.17.0",
+    "@nuxt/module-builder": "^1.0.3",
+    "@nuxt/schema": "^4.6.2",
+    "@nuxt/test-utils": "^4.3.4",
     "@types/node": "latest",
     "changelogen": "^0.6.2",
-    "eslint": "9.39.2",
-    "nuxt": "^4.3.0",
-    "sass": "^1.97.3",
-    "sass-loader": "^16.0.6",
-    "typescript": "~5.9.3",
-    "vitest": "^4.0.18",
-    "vue-tsc": "^3.2.4"
+    "eslint": "^10.13.0",
+    "nuxt": "^4.6.2",
+    "sass": "^1.105.2",
+    "sass-loader": "^17.0.1",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5",
+    "vue-tsc": "^3.3.13" 
   },
   "publishConfig": {
     "access": "public",
