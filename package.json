@@ -1,6 +1,6 @@
 {
   "name": "@virenbar/nuxt-lanyard",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A Nuxt module to track your Discord status using Lanyard API",
   "keywords": [
     "nuxt",
@@ -47,7 +47,7 @@
     "defu": "^6.1.7"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^3.4.3" ,
+    "@nuxt/devtools": "^3.4.3",
     "@nuxt/eslint-config": "^1.17.0",
     "@nuxt/module-builder": "^1.0.3",
     "@nuxt/schema": "^4.6.2",
@@ -60,7 +60,7 @@
     "sass-loader": "^17.0.1",
     "typescript": "^6.0.3",
     "vitest": "^5.0.5",
-    "vue-tsc": "^3.3.13" 
+    "vue-tsc": "^3.3.13"
   },
   "publishConfig": {
     "access": "public",

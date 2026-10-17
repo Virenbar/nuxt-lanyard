@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.5.2
+
+[compare changes](https://github.com/Virenbar/nuxt-lanyard/compare/v1.5.1...v1.5.2)
+
+### 🏡 Chore
+
+- Bump dependencies ([bf3f4e5](https://github.com/Virenbar/nuxt-lanyard/commit/bf3f4e5))
+- Update readme ([a5ef0f3](https://github.com/Virenbar/nuxt-lanyard/commit/a5ef0f3))
+
 ## v1.5.1
 
 [compare changes](https://github.com/Virenbar/nuxt-lanyard/compare/v1.5.0...v1.5.1)
