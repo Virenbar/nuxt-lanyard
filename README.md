@@ -25,32 +25,27 @@ The `useLanyardHelper` composable provides resolving/formatting functions.
 
 ## Quick Setup
 
-1. Add `@virenbar/nuxt-lanyard` dependency to your project
+Install the module to your Nuxt application with one command:
 
-    ```bash
-    # Using npm
-    npm install --save-dev @virenbar/nuxt-lanyard
-    # Using yarn
-    yarn add --dev @virenbar/nuxt-lanyard
-    # Using pnpm
-    pnpm add -D @virenbar/nuxt-lanyard
-    ```
-
-2. Add `@virenbar/nuxt-lanyard` to the `modules` section of `nuxt.config.ts`
-
-    ```js
-    export default defineNuxtConfig({
-      modules: [
-        '@virenbar/nuxt-lanyard'
-      ],
-      // For self-hosted lanyard set apiURL
-      "nuxt-lanyard": {
-        apiURL: "api.lanyard.rest"
-      }
-    })
-    ```
+```bash
+npx nuxt module add @virenbar/nuxt-lanyard
+```
 
 That's it! You can now use Nuxt Lanyard in your Nuxt app ✨
+
+### Self-hosted lanyard
+
+```js
+export default defineNuxtConfig({
+  modules: [
+    '@virenbar/nuxt-lanyard'
+  ],
+  // Set apiURL for self-hosted lanyard
+  lanyard: {
+    apiURL: "api.lanyard.rest"
+  }
+})
+```
 
 ## Usage
 
@@ -114,25 +109,31 @@ const LM = useLanyard({ method: "ws", all: true });
 </template>
 ```
 
-## Development
 
-```bash
-# Install dependencies
-yarn install
-# Generate type stubs
-yarn dev:prepare
-# Develop with the playground
-yarn dev
-# Build the playground
-yarn dev:build
-# Run ESLint
-yarn lint
-# Run Vitest
-#yarn test
-#yarn test:watch
-# Release new version
-yarn release
-```
+## Contribution
+
+<details>
+  <summary>Local development</summary>
+
+  ```bash
+  # Install dependencies
+  yarn install
+  # Generate type stubs
+  yarn dev:prepare
+  # Develop with the playground
+  yarn dev
+  # Build the playground
+  yarn dev:build
+  # Run ESLint
+  yarn lint
+  # Run Vitest
+  #yarn test
+  #yarn test:watch
+  # Release new version
+  yarn release
+  ```
+
+</details>
 
 ## Thanks
 
@@ -141,14 +142,14 @@ yarn release
 - [nebulatgs](https://github.com/nebulatgs) - Creator of [sk-lanyard](https://github.com/nebulatgs/sk-lanyard)
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/@virenbar/nuxt-lanyard/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-src]: https://img.shields.io/npm/v/@virenbar/nuxt-lanyard/latest.svg?style=flat&colorA=020420&colorB=00DC82
 [npm-version-href]: https://npmjs.com/package/@virenbar/nuxt-lanyard
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/@virenbar/nuxt-lanyard.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-downloads-href]: https://npmjs.com/package/@virenbar/nuxt-lanyard
+[npm-downloads-src]: https://img.shields.io/npm/dm/@virenbar/nuxt-lanyard.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-downloads-href]: https://npm.chart.dev/@virenbar/nuxt-lanyard
 
-[license-src]: https://img.shields.io/npm/l/@virenbar/nuxt-lanyard.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-src]: https://img.shields.io/npm/l/@virenbar/nuxt-lanyard.svg?style=flat&colorA=020420&colorB=00DC82
 [license-href]: https://npmjs.com/package/@virenbar/nuxt-lanyard
 
-[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
+[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt
 [nuxt-href]: https://nuxt.com
